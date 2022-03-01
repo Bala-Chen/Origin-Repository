@@ -26,5 +26,6 @@ def resource_not_found(e):
 def resource_not_found(e):
     return jsonify({"error":True,"message":"伺服器錯誤"},ensure_ascii=False), 500
 
-app.register_blueprint(api)
-app.run(port=3000)
+if __name__ == "__main__":
+	app.register_blueprint(api)
+	app.run(port=3000)
