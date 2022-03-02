@@ -75,6 +75,8 @@ def api_attractions():
                 "data": json_data
             }
             return json.dumps(api_json,ensure_ascii=False)
+    except ValueError:
+        return json.dumps({"error":True,"message":"page number error"})
     finally:
         cursor.close()
         conn.close()
