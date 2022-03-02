@@ -1,5 +1,6 @@
 from flask import *
 from view.api import api
+import json
 app=Flask(__name__)
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
@@ -20,11 +21,11 @@ def thankyou():
 
 @app.errorhandler(404)
 def resource_not_found(e):
-    return jsonify({"error":True,"message":"404"}), 404
+    return json.dumps({"error":True,"message":"404"}), 404
 
 @app.errorhandler(500)
 def resource_not_found(e):
-    return jsonify({"error":True,"message":"伺服器錯誤"},ensure_ascii=False), 500
+    return json.dumps({"error":True,"message":"伺服器錯誤"},ensure_ascii=False), 500
 
 if __name__ == "__main__":
     app.register_blueprint(api)
