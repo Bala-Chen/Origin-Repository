@@ -5,7 +5,7 @@ import mysql.connector
 from mysql.connector import pooling
 import json
 
-load_dotenv()
+load_dotenv(os.getenv("envurl"))
 
 dbconfig = {
     "host": os.getenv("host"),
@@ -26,7 +26,7 @@ api = Blueprint('api',__name__)
 
 @api.route('/api/attractions')
 def api_attractions():
-    page = request.args.get("page", None) #0,1,2,3.....
+    page = request.args.get("page", None)
     keyword = request.args.get("keyword",None)
     conn = cnxpool.get_connection()
     cursor = conn.cursor()
