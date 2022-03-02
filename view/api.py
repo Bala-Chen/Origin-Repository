@@ -26,24 +26,26 @@ api = Blueprint('api',__name__)
 
 @api.route('/api/attractions')
 def api_attractions():
-    page = request.args.get("page", None)
+    page = request.args.get("page", None) #0,1,2,3.....
     keyword = request.args.get("keyword",None)
-    take_id_1 = (int(page) * 12)
     conn = cnxpool.get_connection()
     cursor = conn.cursor()
     try:
-        take_id_2 = take_id_1 + 12
+        json_data = []
+        if int(page) == 0:
+            first_data = 0
+        else:
+            first_data = int(page) * 12
         if keyword == None:
-            sql = "SELECT id,stitle,CAT2,xbody,address,info,MRT,latitude,longitude,IMG_SRC FROM alldata WHERE id > %s AND id <= %s"
-            val = (take_id_1,take_id_2)
+            sql = "SELECT id,stitle,CAT2,xbody,address,info,MRT,latitude,longitude,IMG_SRC FROM alldata LIMIT %s,12 "
+            val = (first_data,)
             cursor.execute(sql,val)
             data = cursor.fetchall()
         elif keyword != None:
-            sql =  "SELECT id,stitle,CAT2,xbody,address,info,MRT,latitude,longitude,IMG_SRC FROM alldata WHERE id > %s AND id <= %s AND locate(%s,stitle) "
-            val = (take_id_1,take_id_2,keyword)
+            sql =  "SELECT id,stitle,CAT2,xbody,address,info,MRT,latitude,longitude,IMG_SRC FROM alldata WHERE locate(%s,stitle) LIMIT %s,12 "
+            val = (keyword,first_data)
             cursor.execute(sql,val)
             data = cursor.fetchall()
-        json_data = []
         for i in range(0,12):
             try:
                 dictionary = {
@@ -57,12 +59,16 @@ def api_attractions():
                     "latitude": data[i][7],
                     "longitude": data[i][8],
                     "images":data[i][9].split(",") 
-                }
+                    }
                 json_data.append(dictionary)
             except IndexError:
                 break
         if json_data == []:
-            return json.dumps({"error":True,"message":"查無資料"},ensure_ascii=False)
+            api_json = {
+                "nextPage": None,
+                "data": json_data
+            }
+            return json.dumps(api_json)
         else:
             api_json = {
                 "nextPage": int(page)+1,
@@ -82,7 +88,6 @@ def api_attraction(attractionId):
         val = (str(attractionId),)
         cursor.execute(sql,val)
         data = cursor.fetchone()
-        print(data)
         if data == None:
             return json.dumps({"error":True,"message":"景點編號不正確"},ensure_ascii=False)
         else:
