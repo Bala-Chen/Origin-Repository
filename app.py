@@ -25,8 +25,8 @@ def resource_not_found(e):
 
 @app.errorhandler(500)
 def resource_not_found(e):
-    return json.dumps({"error":True,"message":"伺服器錯誤"},ensure_ascii=False), 500
+    return json.dumps({"error":True,"message":"500"}), 500
 
 if __name__ == "__main__":
     app.register_blueprint(api)
-    app.run(port=3000)
+    app.run(host="0.0.0.0",port=3000)
