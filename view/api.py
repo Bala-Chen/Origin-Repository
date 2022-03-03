@@ -26,7 +26,7 @@ api = Blueprint('api',__name__)
 
 @api.route('/api/attractions')
 def api_attractions():
-    page = request.args.get("page", None)
+    page = request.args.get("page", 0)
     keyword = request.args.get("keyword",None)
     conn = cnxpool.get_connection()
     cursor = conn.cursor()
