@@ -1,3 +1,15 @@
+//設load觀察點
+    
+let options = {
+    root:null,
+    rootMargins:"0px",
+    threshold:0.5
+};
+                
+const observer = new IntersectionObserver(handleIntersect,options);
+observer.observe(document.querySelector('footer'));
+          
+
 
 //製作區塊
 function mainItem(data){
@@ -43,6 +55,7 @@ const mainArea = document.getElementById("main-area");
 const searchBtn = document.getElementById("button-area");
 searchBtn.addEventListener("click",remove)
 function remove(){
+    observer.observe(document.querySelector('footer'));
     mainArea.innerHTML = ""
     searchNext = 0;
 }
@@ -83,35 +96,23 @@ async function rollIndex(page=0){
     }
 }
 
-//設load觀察點
-document.addEventListener("DOMContentLoaded", function() {
-    let options = {
-        root:null,
-        rootMargins:"0px",
-        threshold:0.5
-    };
-        
-    const observer = new IntersectionObserver(handleIntersect,options);
-    observer.observe(document.querySelector('footer'));
-  });
-
 
 //載入更多
-async function handleIntersect(entries){
+async function handleIntersect(entries,observer){
     if (entries[0].isIntersecting){
-        const inputElement = document.getElementById("attraction-name")
+        const inputElement = document.getElementById("attraction-name");
         const inputValue = inputElement.value;
         if (inputValue != ""){
-            let p = await keySearch(searchNext)
+            let p = await keySearch(searchNext);
             if(p == undefined){
-                console.warn("final")
+                observer.unobserve(document.querySelector('footer'))
             }else{
                 searchNext = p
             }
         }else{         
             let nPage = await rollIndex(nextP)
             if (nPage == undefined){
-                console.warn("final")
+                observer.unobserve(document.querySelector('footer'))
             } else{
                 nextP = nPage
             }
