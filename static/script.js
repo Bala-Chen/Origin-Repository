@@ -26,7 +26,8 @@ function mainItem(data){
         let attractionCategory = document.createElement("div");
         let pCategory = document.createElement("p");
         oneItem.className = "main-item";
-        imgArea.className = "img-area"
+        oneItem.id = "item-"+data[i].id;
+        imgArea.className = "img-area";
         firstImg.src = data[i].images[0];
         attractionTop.className = "attraction-top";
         pName.textContent = data[i].name;
@@ -44,7 +45,8 @@ function mainItem(data){
         oneItem.appendChild(imgArea);
         oneItem.appendChild(attractionTop);
         oneItem.appendChild(attractionBottom);
-        mainArea.appendChild(oneItem)
+        oneItem.addEventListener("click",myID)
+        mainArea.appendChild(oneItem);
     }
 }
 
@@ -55,9 +57,14 @@ const mainArea = document.getElementById("main-area");
 const searchBtn = document.getElementById("button-area");
 searchBtn.addEventListener("click",remove)
 function remove(){
-    observer.observe(document.querySelector('footer'));
-    mainArea.innerHTML = ""
-    searchNext = 0;
+    const inputValue = inputElement.value;
+    if (inputValue == ""){
+        window.location.href="/";
+    } else {
+        observer.observe(document.querySelector('footer'));
+        mainArea.innerHTML = "";
+        searchNext = 0;
+    }
 }
 async function keySearch(page=0){
     const inputElement = document.getElementById("attraction-name")
@@ -120,3 +127,9 @@ async function handleIntersect(entries,observer){
     }    
 }
 
+//首頁跳轉景點頁面
+function myID(){
+    let getID = this.id.split("item-")
+    let newID = getID.join("")
+    window.location.href="/attraction/" + newID;
+}
