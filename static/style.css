@@ -75,7 +75,7 @@ hr{
     height: 320px;
     background-image: url("/static/img/welcome.png"),linear-gradient(135deg, #AADDEE 0%, #66AABB 100%);
     background-repeat: no-repeat;
-    background-position: right;
+    background-position-x: 85%;
 }
 
 .section-block{
@@ -223,6 +223,8 @@ main{
     bottom: -10px;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 420px;
+    text-align: center;
 }
 
 .lunbos span {
