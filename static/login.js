@@ -9,14 +9,14 @@ const checkLoginBtn = document.getElementById('check-login');
 function login(){
     grayBlock.style.display = "block";
     loginBlock.style.display = "block";
-    document.body.classList.add("stop-scrolling");
+    document.body.classList.add("stop-scroll");
 }
 function loginToWindow(){
     if(grayBlock.style.display == "block"){
         grayBlock.style.display = "none";
         loginBlock.style.display = "none";
         registerBlock.style.display = "none";
-        document.body.classList.remove("stop-scrolling");
+        document.body.classList.remove("stop-scroll");
     }
 }
 function loginToRegister(){
@@ -88,8 +88,9 @@ function clickLoginBtn(){
         if (Object.keys(reJson)[0] == "ok"){
             location.reload();
         }else{
-            pMessage.textContent = ""
-            pMessage.textContent = Object.values(reJson)[1]
+            pMessage.textContent = Object.values(reJson)[1];
+            loginEmailEle.value = "";
+            loginPwdEle.value = "";
         }
     })
 }
@@ -120,7 +121,7 @@ window.addEventListener("load",getUser)
 
 //登出
 function delSession(){
-    fetch("api/user",{method: 'DELETE'})
+    fetch("/api/user",{method: 'DELETE'})
     .then(function(res){
         return res.json()
     })
