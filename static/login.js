@@ -117,6 +117,7 @@ function getUser(){
 }
 window.addEventListener("load",getUser)
 
+
 //登出
 function delSession(){
     fetch("api/user",{method: 'DELETE'})
