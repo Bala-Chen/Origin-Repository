@@ -1,6 +1,7 @@
 from modules.db import Pool
 from flask import request
 
+
 p = Pool()
 
 class attraction():
