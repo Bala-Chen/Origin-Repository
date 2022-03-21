@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
 
-
 * {
     margin: 0;
     padding: 0;
@@ -72,6 +71,7 @@ hr{
     border: none;
     background-color: white;
     font-size: 16px;
+    cursor: pointer;
 }
 
 #loginMessage{
@@ -111,6 +111,18 @@ hr{
     border-radius: 6px;
     margin-top: 25px;
     display: none;
+    animation-name: loginanimation;
+    animation-duration: 1s;
+}
+
+@keyframes loginanimation{
+    from {
+        top:0px;
+        opacity: 0.5;
+    }
+    to {
+        top:54px;
+        opacity: 1;}
 }
 
 .register-block{
@@ -123,6 +135,8 @@ hr{
     border-radius: 6px;
     margin-top: 25px;
     display: none;
+    animation-name: loginanimation;
+    animation-duration: 1s;
 }
 
 .blue-block{
@@ -484,7 +498,7 @@ main{
     margin-bottom: 120px;
 }
 
-.stop-scrolling {
+.stop-scroll {
     height: 100%;
     overflow: hidden;
 }
