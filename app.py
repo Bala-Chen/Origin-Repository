@@ -5,7 +5,7 @@ import json
 app=Flask(__name__)
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
-app.secret_key = "test123"
+app.secret_key = "test1234"
 
 # Pages
 @app.route("/")
