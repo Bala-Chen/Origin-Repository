@@ -22,11 +22,15 @@ function loginToWindow(){
 function loginToRegister(){
     loginBlock.style.display ="none";
     registerBlock.style.display = "block";
+    const pMessage = document.getElementById("registerMessage"); 
+    pMessage.innerHTML=""
 }
 
 function registerToLogin(){
     registerBlock.style.display = "none";
     loginBlock.style.display ="block";
+    const pMessage = document.getElementById("loginMessage");
+    pMessage.innerHTML=""
 }
 
 loginBtn.addEventListener("click",login);
@@ -56,9 +60,15 @@ function clickRegisterBtn(){
     .then(function(reJson){
         const pMessage = document.getElementById("registerMessage"); 
         if (Object.keys(reJson)[0] == "ok"){
-            pMessage.textContent = "註冊成功"
+            pMessage.textContent = "註冊成功";
+            registerNameEle.value = "";
+            registerEmailEle.value = "";
+            registerPwdEle.value = "";
         }else{
             pMessage.textContent = Object.values(reJson)[1];
+            registerNameEle.value = "";
+            registerEmailEle.value = "";
+            registerPwdEle.value = "";
         }
     })
 }
