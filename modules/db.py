@@ -5,7 +5,6 @@ from mysql.connector import pooling
 with open("config/env_setting.json") as f:
     data = json.load(f)
 
-
 class Pool():
     def __init__(self):
         self.__dbconfig = data
