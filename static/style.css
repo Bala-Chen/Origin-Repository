@@ -73,7 +73,12 @@ hr{
     font-size: 16px;
     cursor: pointer;
 }
-
+#loginli{
+    display: none;
+}
+#logoutli{
+    display: none;
+}
 #loginMessage{
     color: red;
 }
