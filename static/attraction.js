@@ -95,6 +95,7 @@ function getImage(data){
 
 attractionPage();
 
+
 function currentSlide(n) {
     showSlides(slideIndex = n);
 }
