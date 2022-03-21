@@ -103,7 +103,6 @@ async function rollIndex(page=0){
     }
 }
 
-
 //載入更多
 async function handleIntersect(entries,observer){
     if (entries[0].isIntersecting){
