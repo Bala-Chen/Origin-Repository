@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台北一日遊-預定行程</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css" >
+</head>
+<body>
+    <header>
+        <div class="header-invisible"></div>
+        <div class="moving-header">
+            <div class="container">
+                <div class="header-textbox">
+                    <h1><a href="/">台北一日遊</a></h1>
+                    <nav>
+                        <ul class="nav-links">
+                            <li class="nav-item"><button id="check-booking">預定行程</button></li>
+                            <li class="nav-item"><button id="login-and-regiseter">登入/註冊</button></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </header>
+    <section class="login-register-block" id="login-register-block">
+        <div class="gray-block" id="gray-block"></div>
+        <div class="login-block" id="login-block">
+            <div class="blue-block"></div>
+            <h2>登入會員帳號</h2>
+            <input type="email" name="email" placeholder="輸入電子信箱">
+            <input type="password" name="password" placeholder="輸入密碼">
+            <button class="submit" id = "login-submit">登入帳戶</button>
+            <p>還沒有帳戶？<button id="check-register">點此註冊</button></p>
+        </div>
+        <div class="register-block" id="register-block">
+            <div class="blue-block"></div>
+            <h2>註冊會員帳號</h2>
+            <input type="text" name="name" placeholder="輸入姓名">
+            <input type="email" name="email" placeholder="輸入電子信箱">
+            <input type="password" name="password" placeholder="輸入密碼">
+            <button class="submit" id="register-submit">註冊新帳戶</button>
+            <p>已經有帳戶了？<button id="check-login">點此登入</button></p>
+        </div>
+    </section>
+    <script src="/static/login.js"></script>
+</body>
+</html>

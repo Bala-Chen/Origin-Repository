@@ -26,7 +26,7 @@ hr{
     left: 0;
     height:54px;
     background-color: white;
-    z-index: 900;
+    z-index: 800;
 }
 
 .container{
@@ -66,9 +66,105 @@ hr{
     margin: 0 10px;
 }
 
-.nav-item a{
+.nav-item button{
     color: #666666;
-    text-decoration: none;
+    border: none;
+    background-color: white;
+    font-size: 16px;
+}
+
+#loginMessage{
+    color: red;
+}
+
+#registerMessage{
+    color: red;
+}
+
+.login-register-block{
+    display: flex;
+    justify-content: center;
+}
+
+.gray-block{
+    background-color: black;
+    opacity: 0.25;
+    position: fixed;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 900;
+    display: none;
+}
+
+.login-block{
+    width: 340px;
+    background-color: #FFFFFF;
+    color: #666666;
+    position: fixed;
+    z-index: 910;
+    text-align: center;
+    border-radius: 6px;
+    margin-top: 25px;
+    display: none;
+}
+
+.register-block{
+    width: 340px;
+    background-color: #FFFFFF;
+    color: #666666;
+    position: fixed;
+    z-index: 910;
+    text-align: center;
+    border-radius: 6px;
+    margin-top: 25px;
+    display: none;
+}
+
+.blue-block{
+    background: linear-gradient(270deg, #337788 0%, #66AABB 100%);
+    width: 340px;
+    height: 10px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.login-register-block h2{
+    margin:5px auto;
+}
+
+.login-register-block input{
+    width: 310px;
+    height: 47px;
+    margin: 5px 15px;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 15px;
+}
+
+.login-register-block .submit{
+    color: #FFFFFF;
+    background-color: #448899;
+    border-style: none;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 16px;
+    margin-bottom: 10px;
+    width: 310px;
+    height: 47px;
+    cursor: pointer;
+}
+
+.login-register-block button{
+    border: none;
+    font-size: 16px;
+    background-color: white;
+    color: #666666;
+    margin-top: 5px;
+    margin-bottom: 15px;
 }
 
 .section-area{
@@ -385,6 +481,11 @@ main{
 
 .attraction-traffic{
     margin-bottom: 120px;
+}
+
+.stop-scrolling {
+    height: 100%;
+    overflow: hidden;
 }
 
 @media screen and (min-width: 601px) and (max-width:1200px){

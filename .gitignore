@@ -140,3 +140,5 @@ cython_debug/
 # OS or Editor folders
 .DS_Store
 .DS_Store?
+
+config/env_setting.json

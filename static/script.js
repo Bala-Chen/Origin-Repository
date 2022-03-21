@@ -133,3 +133,4 @@ function myID(){
     let newID = getID.join("")
     window.location.href="/attraction/" + newID;
 }
+
