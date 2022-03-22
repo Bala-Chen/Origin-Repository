@@ -12,7 +12,9 @@ function attractionPage(){
         attractionSection(resJson.data);
         attractionDescript(resJson.data);
     })
-    
+    .catch(function(error){
+        document.body.innerHTML = "查無資料"
+    })  
 }
 
 const attractions = document.getElementById("origin-data")
@@ -94,6 +96,7 @@ function getImage(data){
 }
 
 attractionPage();
+
 
 function currentSlide(n) {
     showSlides(slideIndex = n);

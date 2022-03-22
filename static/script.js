@@ -103,7 +103,6 @@ async function rollIndex(page=0){
     }
 }
 
-
 //載入更多
 async function handleIntersect(entries,observer){
     if (entries[0].isIntersecting){
@@ -133,3 +132,4 @@ function myID(){
     let newID = getID.join("")
     window.location.href="/attraction/" + newID;
 }
+
