@@ -40,7 +40,7 @@ class Member:
             if check_data == []:
                 insert_sql = "INSERT INTO members(name,email,password) VALUES (%s,%s,%s);"
                 insert_val = (name,email,password)
-                p.sql_insert(insert_sql,insert_val)
+                p.sql_commit(insert_sql,insert_val)
                 register_ok = {
                     "ok":True
                 }
@@ -62,11 +62,12 @@ class Member:
                 "message":"姓名信箱密碼不得為空"
             } 
             return register_err
-        login_sql = "SELECT members.email FROM members WHERE email = %s AND password = %s"
+        login_sql = "SELECT uid,email FROM members WHERE email = %s AND password = %s"
         login_val = (email,password)
         exist_account = p.sql_fetchone(login_sql,login_val)
         if exist_account != None:
-            session["email"] = exist_account[0]
+            session["uid"] = exist_account[0]
+            session["email"] = exist_account[1]
             loginok_message = {
                 "ok":True
             }
