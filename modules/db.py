@@ -38,7 +38,7 @@ class Pool():
         self.db_close(conn,cursor)
         return d
 
-    def sql_insert(self,sql,val):
+    def sql_commit(self,sql,val):
         conn = self.connection().get_connection()
         cursor = conn.cursor()
         cursor.execute(sql,val)
