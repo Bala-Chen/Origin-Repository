@@ -600,6 +600,10 @@ main{
     display: none;
 }
 
+.write-area input{
+    border: 1px solid #E8E8E8
+}
+
 .write-area hr{
     margin-top: 45px;
     margin-bottom: 44px;
