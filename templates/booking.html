@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/style.css" >
+    <title>台北一日遊-預定行程</title>
+</head>
+<body>
+    <header>
+        <div class="header-invisible"></div>
+        <div class="moving-header">
+            <div class="container">
+                <div class="header-textbox">
+                    <h1><a href="/">台北一日遊</a></h1>
+                    <nav>
+                        <ul class="nav-links">
+                            <li class="nav-item"><button id="check-booking">預定行程</a></li>
+                            <li class="nav-item" id="loginli"><button id="login-and-regiseter">登入/註冊</button></li>
+                            <li class="nav-item" id="logoutli"><button id="logout">登出系統</button></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </header>
+    <section class="login-register-block" id="login-register-block">
+        <div class="gray-block" id="gray-block"></div>
+        <div class="login-block" id="login-block">
+            <div class="blue-block"></div>
+            <h2>登入會員帳號</h2>
+            <img src="/static/img/icon_close.png" id="close-img">
+            <input type="email" name="email" id="login-email" placeholder="輸入電子信箱">
+            <input type="password" name="password" id="login-password" placeholder="輸入密碼">
+            <button class="submit" id = "login-submit">登入帳戶</button>
+            <p id="loginMessage"></p>
+            <p>還沒有帳戶？<button id="check-register">點此註冊</button></p>
+        </div>
+        <div class="register-block" id="register-block">
+            <div class="blue-block"></div>
+            <h2>註冊會員帳號</h2>
+            <img src="/static/img/icon_close.png" id="close-img2">
+            <input type="text" name="name" id="register-name" placeholder="輸入姓名">
+            <input type="email" name="email" id="register-email" placeholder="輸入電子信箱">
+            <input type="password" name="password" id="register-password" placeholder="輸入密碼">
+            <button class="submit" id="register-submit">註冊新帳戶</button>
+            <p id="registerMessage"></p>
+            <p>已經有帳戶了？<button id="check-login">點此登入</button></p>
+        </div>
+    </section>
+    <main id="member-booking">
+        <div class="booking-container">
+            <div class="schedule-trip" id="schedule-trip">
+                <div class="booking-title" id="booking-title">
+                    
+                </div>
+            </div>
+            <div class="write-area" id="write-area">
+                <hr>
+                <div class="user-contact">
+                    <h3>您的聯絡資訊</h3>
+                    <div class="user-form">
+                        <label for="booking-name">聯絡姓名：</label>
+                        <input id="booking-name" type="text">
+                        <label for="booking-email">聯絡信箱：</label>
+                        <input id="booking-email" type="text">
+                        <label for="booking-phone">手機號碼：</label>
+                        <input id="booking-phone" type="text">
+                    </div>
+                    <h4>請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。</h4>
+                </div>
+                <hr>
+                <div class="credit-card" id="write-area-credit">
+                    <h3>信用卡付款資訊</h3>
+                    <div class="user-form">
+                        <label for="name">卡片號碼：</label>
+                        <input type="text" placeholder="**** **** **** ****">
+                        <br>
+                        <label for="name">過期時間：</label>
+                        <input type="text" placeholder="MM / YY">
+                        <br>
+                        <label for="name">驗證密碼：</label>
+                        <input type="text" placeholder="CVV">
+                    </div>
+                </div>
+                <hr>
+                <div class="right-position">
+                    <div class="right-block">
+                        <h3 id="right-block-h3"></h3>
+                        <button type="button">確認訂購並付款</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>   
+    <footer>
+        <div class="footer-block">
+            <h3 id="footer-block-h3">COPYRIGHT © 2021 台北一日遊</h3>
+        </div>
+    </footer>
+    <script src="/static/login.js"></script>
+    <script src="/static/booking.js"></script>
+</body>
+</html>
