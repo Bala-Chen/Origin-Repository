@@ -6,6 +6,9 @@ const loginBlock = document.getElementById('login-block');
 const registerBlock = document.getElementById('register-block');
 const checkRegisterBtn = document.getElementById('check-register');
 const checkLoginBtn = document.getElementById('check-login');
+const regiseterClose = document.getElementById('close-img2');
+const loginClose = document.getElementById('close-img');
+
 function login(){
     grayBlock.style.display = "block";
     loginBlock.style.display = "block";
@@ -37,6 +40,8 @@ loginBtn.addEventListener("click",login);
 grayBlock.addEventListener("click",loginToWindow);
 checkRegisterBtn.addEventListener("click",loginToRegister);
 checkLoginBtn.addEventListener("click",registerToLogin);
+regiseterClose.addEventListener("click",loginToWindow);
+loginClose.addEventListener("click",loginToWindow);
 
 //送資訊給後端(註冊)
 function clickRegisterBtn(){
@@ -124,6 +129,14 @@ function getUser(){
             loginli.style.display = "inline-block";
             logoutli.style.display = "none";
         }
+        return resJson.data
+    })
+    .then(function(reData){
+        let urlFinal = (window.location.href).split('/')
+        if (urlFinal[3] == "booking"){
+            bookingTitle(reData.name);
+            bookingUser(reData.name,reData.email)
+        }
     })
 }
 window.addEventListener("load",getUser)
@@ -143,3 +156,87 @@ function delSession(){
 }
 const logoutBtn = document.getElementById("logout")
 logoutBtn.addEventListener("click",delSession)
+
+//enter booking
+function enterBooking(){
+    fetch("/api/user")
+    .then(function(res){
+        return res.json()
+    })
+    .then(function(resJson){
+        if (resJson.data != null){
+            location.replace("/booking");
+        } else {
+            login()
+        }
+    })
+}
+const enterBookingBtn = document.getElementById('check-booking')
+enterBookingBtn.addEventListener("click",enterBooking)
+
+//booking 頁面開頭
+function bookingTitle(name){
+    const scheduleTitle = document.getElementById("booking-title");
+    const scheduleTripH2 = document.createElement("h2");
+    scheduleTripH2.textContent = "您好，" + name + "，待預定的行程如下：";
+    scheduleTitle.appendChild(scheduleTripH2);
+}
+
+//booking 套入資訊
+function bookingUser(name,email){
+    const bookingName = document.getElementById('booking-name');
+    const bookingEmail = document.getElementById('booking-email');
+    bookingName.value = name;
+    bookingEmail.value = email;
+}
+
+//attraction to booking
+const bookingBtn = document.getElementById("booking-btn");
+function madeBooking(){
+    let attractionID = lastNum;
+    const dateInput = document.getElementById("choose-date");
+    const timeCheck = document.getElementsByName("time");
+    const errorBooking = document.getElementById("booking-error");
+    let dateInputValue = dateInput.value;
+    let timeCheckValue;
+    for (let i = 0; i < timeCheck.length; i++){
+        if (timeCheck[i].checked == true){
+            timeCheckValue = timeCheck[i].value;
+            break;
+        }    
+    }
+    if (dateInputValue == ""){
+        errorBooking.textContent = "請點選日期";
+    }
+    else {
+        let cost;
+        if (timeCheckValue == "morning"){
+            cost = 2000;
+        } else if (timeCheckValue == "afternoon") {
+            cost = 2500;
+        }
+        const bookingOptions = {
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body: JSON.stringify({attractionId:attractionID,date:dateInputValue,time:timeCheckValue,price:cost})
+        };
+
+        fetch("/api/booking",bookingOptions)
+        .then(function(res){
+            return res.json()
+        })
+        .then(function(resJson){
+            if (resJson.ok == true){
+                location.replace("/booking");
+            }else if (resJson.message == "未登入系統，拒絕存取") {
+                login();
+            }else{
+                errorBooking.textContent = resJson.message;
+            }
+        })
+    }
+}
+if (window.location.href.split('/')[3] == "attraction"){
+    bookingBtn.addEventListener("click",madeBooking)
+}
+

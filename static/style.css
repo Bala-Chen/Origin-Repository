@@ -144,6 +144,12 @@ hr{
     animation-duration: 1s;
 }
 
+.login-block img, .register-block img{
+    position: absolute;
+    top: 25px;
+    right: 20px;
+}
+
 .blue-block{
     background: linear-gradient(270deg, #337788 0%, #66AABB 100%);
     width: 340px;
@@ -297,16 +303,21 @@ hr{
 .footer-block{
     background-color: #757575;
     width: 100%;
-    height: 104px;
     color:white;
     font-size: 16px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    position: relative;
+    bottom: 0;
+}
+
+.footer-block h3{
+    margin: 45px auto;
+    /* margin-bottom: 806px; */
 }
 
 .no-data{
-    margin-bottom: 250px;
+    margin-bottom: 250px
 }
 
 
@@ -392,7 +403,7 @@ main{
 .order-attractions{
     background-color: #E8E8E8;
     width: 600px;
-    height: 302px;
+    height: auto;
     padding: 15px 20px;
     border-radius: 5px;
 }
@@ -415,6 +426,7 @@ main{
     padding: 5px 10px;
     font-size: 16px;
     border: none;
+    background: white;
 }
 
 .choose-time .time{
@@ -486,6 +498,11 @@ main{
     margin: 10px 20px;
 }
 
+.booking-error{
+    margin-top: 10px;
+    color: red;
+}
+
 .attraction-down{
     width: 1200px;
     margin: 50px auto ;
@@ -506,6 +523,145 @@ main{
 .stop-scroll {
     height: 100%;
     overflow: hidden;
+}
+
+/* booking */
+.booking-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
+.schedule-trip{
+    width: 1200px;
+    padding-left: 102px;
+    margin-top: 46px;
+    color: #666666;
+}
+
+.schedule-trip h2{
+    font-weight: 700;
+    font-size: 19px;
+    margin-bottom: 35px;
+}
+
+.schedule-trip hr{
+    margin-top: 40px;
+    margin-bottom: 44px;
+}
+
+.booking img{
+    width:266px;
+    height: 200px;
+    margin-right: 22px;
+}
+
+.booking{
+    display: flex;
+    justify-content: left;
+    width: 980px;
+}
+
+.booking-info h3{
+    font-size: 16px;
+    color:#448899 ;
+    margin: 5px auto 30px auto;
+    width: 500px;
+} 
+
+.trashcan{
+    flex-grow: 1;
+    display: flex;
+    justify-content: right;
+}
+
+.trashcan img{
+    width: 30px;
+    height:30px;
+    cursor: pointer;
+    margin-right: 0;
+}
+
+.booking-info span{
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.booking-info h4{
+    margin: 10px auto;
+}
+
+.write-area{
+    width: 1200px;
+    padding-left: 102px;
+    color: #666666;
+    display: none;
+}
+
+.write-area input{
+    border: 1px solid #E8E8E8
+}
+
+.write-area hr{
+    margin-top: 45px;
+    margin-bottom: 44px;
+}
+
+.user-contact h3{
+    margin-bottom: 24px;
+    font-size: 19px;
+}
+
+.user-contact input{
+    width:200px;
+    height:38px;
+    margin-bottom: 15px;
+    padding: 10px;
+}
+
+.user-contact h4{
+    margin-top: 5px;
+}
+
+.user-form{
+    width: 300px;
+}
+
+.credit-card h3{
+    margin-bottom: 24px;
+}
+
+.credit-card input{
+    width:200px;
+    height:38px;
+    margin-bottom: 15px;
+    padding: 10px;
+}
+
+.right-position{
+    display: flex;
+    justify-content: right;
+    margin-right: 102px;
+}
+
+.right-block h3{
+    font-size: 16px;
+    text-align: right;
+}
+
+.right-block button{
+    border: 0;
+    border-radius: 5px;
+    background-color: #448899;
+    width: 173px;
+    height: 36px;
+    color: white;
+    font-size: 19px;
+    font-weight: 400;
+    margin-top: 25px;
+    cursor: pointer;
 }
 
 @media screen and (min-width: 601px) and (max-width:1200px){
@@ -561,6 +717,39 @@ main{
 
     .attraction-down{
         width: 95%;
+    }
+
+    .schedule-trip{
+        width: 90%;
+        padding: 0;
+    }
+
+    /* booking */
+    .booking{
+        width: 100%;
+    }
+
+    .booking-info h3{
+        width: auto;
+    }
+
+    .trashcan{
+        margin-left: 0;
+        display: flex;
+        justify-content: right;
+    }
+
+    .trashcan img{
+        position: relative;
+    }
+
+    .write-area{
+        width: 90%;
+        padding-left: 0;
+    }
+
+    .right-position{
+        margin-right: 0;
     }
 }
 
@@ -621,5 +810,64 @@ main{
 
     .attraction-down{
         width: 95%;
+    }
+
+    .schedule-trip{
+        width: 90%;
+        padding: 0;
+    }
+
+    .booking{
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+
+    .booking h3{
+        margin-left: 0;
+    }
+
+    .booking img{
+        width: 100%;
+        height: auto;
+        margin-bottom: 28px;
+        margin-right: 0;
+    }
+
+    .trashcan {
+        flex-grow: 1;
+        margin-left: 90%;
+    }
+
+    .trashcan img{
+        width: 30px;
+        height: 30px;
+        margin-bottom: 0;
+        margin-right: 0;
+    }
+
+    .write-area{
+        width: 90%;
+        padding-left: 0;
+    }
+
+    .write-area hr {
+        margin: 0;
+    }
+
+    .user-contact {
+        margin-top: 44px;
+        margin-bottom: 40px;
+    }
+
+    .credit-card {
+        margin-top: 44px;
+        margin-bottom: 40px;
+    }
+
+    .right-position{
+        margin-top: 43px;
+        margin-right: 0;
     }
 }
