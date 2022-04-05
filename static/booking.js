@@ -231,11 +231,13 @@ function onSubmit(event) {
                     return res.json()
                 })
                 .then(function(resJson){
+                    const backMsg = document.getElementById("backend-err-msg");
                     if (resJson.data.payment.status == 0){
                         location.replace("/thankyou?number="+parseInt(resJson.data.number));
                     } else if (resJson.error == true){
-                        const backMsg = document.getElementById("backend-err-msg");
                         backMsg.textContent = resJson.message;
+                    } else if (resJson.data.payment.status == 1){
+                        backMsg.textContent = resJson.data.payment.message + "，請重新嘗試";
                     }
                 })
             })
