@@ -4,6 +4,7 @@ import json
 from controller.attraction_api import attraction
 from controller.member_api import Member
 from controller.booking_api import Booking
+from controller.order_api import Order
 
 api = Blueprint('api',__name__)
 
@@ -34,3 +35,11 @@ def booking():
         return json.dumps(Booking.get_a_booking())
     elif request.method == "DELETE":
         return json.dumps(Booking.delete_booking())
+
+@api.route('/api/orders', methods=["POST"])
+def orders():
+    return json.dumps(Order.get_order())
+
+@api.route('/api/order/<string:orderNumber>')
+def order(orderNumber):
+    return json.dumps(Order.thanks(orderNumber))
