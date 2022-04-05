@@ -2,6 +2,7 @@ from flask import request,session
 from random import randint
 import requests
 import json
+import re
 from modules.db import Pool
 from controller.booking_api import Booking
 
@@ -17,6 +18,22 @@ class Order:
             r_trip = request_json["order"]["trip"]
             r_attr = request_json["order"]["trip"]["attraction"]
             r_contact = request_json["order"]["contact"]
+            email_regex = re.compile(r'[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+')
+            email_msg = email_regex.search(request_json["order"]["contact"]["email"])
+            phone_regex = re.compile(r'^([-_－—\s\(]?)([\(]?)((((0?)|((00)?))(((\s){0,2})|([-_－—\s]?)))|(([\)]?)[+]?))(886)?([\)]?)([-_－—\s]?)([\(]?)[0]?[1-9]{1}([-_－—\s\)]?)[1-9]{2}[-_－—]?[0-9]{3}[-_－—]?[0-9]{3}$')
+            phone_msg = phone_regex.search(request_json["order"]["contact"]["phone"])
+            if request_json["order"]["contact"]["phone"] == "" or request_json["order"]["contact"]["email"] or request_json["order"]["contact"]["name"]:
+                error_message = {
+                    "error": True,
+                    "message": "客戶資料不得為白"
+                }
+                return error_message
+            elif email_msg == None or phone_msg == None:
+                error_message = {
+                    "error": True,
+                    "message": "手機或Email格式有誤"
+                }
+                return error_message
             random_num = randint(10000000000000,99999999999999)
             sel_sql = "SELECT order_id FROM paydata WHERE order_number = %s"
             sel_val = (random_num,)
@@ -24,7 +41,7 @@ class Order:
             if sel_result != None:
                 error_message = {
                     "error": True,
-                    "message": "duplicate order number"
+                    "message": "產生訂單編號重複，請重新再試"
                 }
                 return error_message
             else:
