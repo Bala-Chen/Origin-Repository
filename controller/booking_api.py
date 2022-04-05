@@ -1,5 +1,4 @@
 import re
-from controller.attraction_api import attraction
 from modules.db import Pool
 from flask import request,session
 
