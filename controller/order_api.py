@@ -22,7 +22,7 @@ class Order:
             email_msg = email_regex.search(request_json["order"]["contact"]["email"])
             phone_regex = re.compile(r'^([-_－—\s\(]?)([\(]?)((((0?)|((00)?))(((\s){0,2})|([-_－—\s]?)))|(([\)]?)[+]?))(886)?([\)]?)([-_－—\s]?)([\(]?)[0]?[1-9]{1}([-_－—\s\)]?)[1-9]{2}[-_－—]?[0-9]{3}[-_－—]?[0-9]{3}$')
             phone_msg = phone_regex.search(request_json["order"]["contact"]["phone"])
-            if request_json["order"]["contact"]["phone"] == "" or request_json["order"]["contact"]["email"] or request_json["order"]["contact"]["name"]:
+            if request_json["order"]["contact"]["phone"] == "" or request_json["order"]["contact"]["email"]=="" or request_json["order"]["contact"]["name"]=="":
                 error_message = {
                     "error": True,
                     "message": "客戶資料不得為白"
