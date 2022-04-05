@@ -167,62 +167,78 @@ TPDirect.card.onUpdate(function (update) {
 
 paySubmit.addEventListener("click",onSubmit)
 function onSubmit(event) {
-    event.preventDefault()
-    const tappayStatus = TPDirect.card.getTappayFieldsStatus()
+    event.preventDefault();
+    const cardErr = document.getElementById('card-err-msg');
+    const tappayStatus = TPDirect.card.getTappayFieldsStatus();
 
     if (tappayStatus.canGetPrime === false) {
-        alert('can not get prime')
+        cardErr.textContent = '無法正確送出資料';
         return
     }
 
     TPDirect.card.getPrime((result) => {
         if (result.status !== 0) {
-            alert('get prime error ' + result.msg)
+            cardErr.textContent ='取得prime error原因' + result.msg;
             return
         }
-
+                
+        cardErr.textContent = ''
+        const errMsg = document.getElementById('input-err-msg');
         const prime = result.card.prime;
         const bookingName = document.getElementById('booking-name').value;
         const bookingEmail = document.getElementById('booking-email').value;
         const bookingPhone = document.getElementById('booking-phone').value;
-        fetch("/api/booking")
-        .then(function(res){
-            return res.json()
-        })
-        .then(function(resJson){
-            const orderAttraction = resJson.data.attraction;
-            const orderDate = resJson.data.date;
-            const orderPrice = resJson.data.price;
-            const orderTime = resJson.data.time;
-            const payOptions = {
-                method:"POST",
-                headers: {"Content-Type":"application/json"},
-                body: JSON.stringify({
-                    prime:prime,
-                    order:{
-                        price:orderPrice,
-                        trip:{
-                            attraction:orderAttraction,
-                            date:orderDate,
-                            time:orderTime
-                        },
-                        contact:{
-                            name:bookingName,
-                            email:bookingEmail,
-                            phone:bookingPhone
-                        }
-                    }
-                })
-            }
-            fetch('/api/orders',payOptions)
+        const emailRe = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/;
+        const phoneRe = /^([-_－—\s\(]?)([\(]?)((((0?)|((00)?))(((\s){0,2})|([-_－—\s]?)))|(([\)]?)[+]?))(886)?([\)]?)([-_－—\s]?)([\(]?)[0]?[1-9]{1}([-_－—\s\)]?)[1-9]{2}[-_－—]?[0-9]{3}[-_－—]?[0-9]{3}$/;
+        if (bookingName == "" || bookingEmail == "" || bookingPhone == ""){
+            errMsg.textContent = "姓名，信箱，手機不得為空";
+        } else if (bookingPhone.search(phoneRe)== -1){
+            errMsg.textContent = "手機格式有誤";
+        } else if (bookingEmail.search(emailRe)== -1){
+            errMsg.textContent = "信箱格式有誤"
+        } else {
+            fetch("/api/booking")
             .then(function(res){
                 return res.json()
             })
             .then(function(resJson){
-                if (resJson.data.payment.status == 0){
-                    location.replace("/thankyou?number="+parseInt(resJson.data.number));
+                const orderAttraction = resJson.data.attraction;
+                const orderDate = resJson.data.date;
+                const orderPrice = resJson.data.price;
+                const orderTime = resJson.data.time;
+                const payOptions = {
+                    method:"POST",
+                    headers: {"Content-Type":"application/json"},
+                    body: JSON.stringify({
+                        prime:prime,
+                        order:{
+                            price:orderPrice,
+                            trip:{
+                                attraction:orderAttraction,
+                                date:orderDate,
+                                time:orderTime
+                            },
+                            contact:{
+                                name:bookingName,
+                                email:bookingEmail,
+                                phone:bookingPhone
+                            }
+                        }
+                    })
                 }
+                fetch('/api/orders',payOptions)
+                .then(function(res){
+                    return res.json()
+                })
+                .then(function(resJson){
+                    if (resJson.data.payment.status == 0){
+                        location.replace("/thankyou?number="+parseInt(resJson.data.number));
+                    } else if (resJson.error == true){
+                        const backMsg = document.getElementById("backend-err-msg");
+                        backMsg.textContent = resJson.message;
+                    }
+                })
             })
-        })
+        }
     })
 }
