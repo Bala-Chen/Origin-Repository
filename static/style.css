@@ -625,19 +625,20 @@ main{
     margin-top: 5px;
 }
 
+.err-msg{
+    color: red;
+}
+
+#card-err-msg ,#backend-err-msg{
+    margin-top: 20px;
+}
+
 .user-form{
     width: 300px;
 }
 
 .credit-card h3{
     margin-bottom: 24px;
-}
-
-.credit-card input{
-    width:200px;
-    height:38px;
-    margin-bottom: 15px;
-    padding: 10px;
 }
 
 .right-position{
