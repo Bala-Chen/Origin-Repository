@@ -143,3 +143,4 @@ cython_debug/
 
 #config
 config/env_setting.json
+config/tappay_key.json

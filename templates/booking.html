@@ -68,6 +68,7 @@
                         <input id="booking-email" type="text">
                         <label for="booking-phone">手機號碼：</label>
                         <input id="booking-phone" type="text">
+                        <div class="err-msg" id="input-err-msg"></div>
                     </div>
                     <h4>請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。</h4>
                 </div>
@@ -75,21 +76,27 @@
                 <div class="credit-card" id="write-area-credit">
                     <h3>信用卡付款資訊</h3>
                     <div class="user-form">
-                        <label for="name">卡片號碼：</label>
-                        <input type="text" placeholder="**** **** **** ****">
-                        <br>
-                        <label for="name">過期時間：</label>
-                        <input type="text" placeholder="MM / YY">
-                        <br>
-                        <label for="name">驗證密碼：</label>
-                        <input type="text" placeholder="CVV">
+                        <div class="form-group card-number-group">
+                            <label for="card-number" class="control-label"><span id="cardtype"></span>卡片號碼：</label>
+                            <div class="form-control card-number"></div>
+                        </div>
+                        <div class="form-group expiration-date-group">
+                            <label for="expiration-date" class="control-label">過期時間：</label>
+                            <div class="form-control expiration-date" id="tappay-expiration-date"></div>
+                        </div>
+                        <div class="form-group cvc-group">
+                            <label for="cvc" class="control-label">驗證密碼：</label>
+                            <div class="form-control cvc" id="card-ccv"></div>
+                        </div>
                     </div>
+                    <div class="err-msg" id="card-err-msg"></div>
                 </div>
                 <hr>
                 <div class="right-position">
                     <div class="right-block">
                         <h3 id="right-block-h3"></h3>
-                        <button type="button">確認訂購並付款</button>
+                        <button type="submit" id="pay-submit">確認訂購並付款</button>
+                        <div class="err-msg" id="backend-err-msg"></div>
                     </div>
                 </div>
             </div>
@@ -101,6 +108,7 @@
         </div>
     </footer>
     <script src="/static/login.js"></script>
+    <script src="https://js.tappaysdk.com/tpdirect/v5.9.0"></script>
     <script src="/static/booking.js"></script>
 </body>
 </html>

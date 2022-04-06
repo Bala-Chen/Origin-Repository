@@ -112,3 +112,135 @@ function deleteBooking(){
         } 
     })
 }
+
+
+//tappay
+TPDirect.setupSDK(123965,'app_NZdIqFBF7UBPGClOer5Nt4ZinS3qCQKtYO6lC5lNcOIJYb7ZE6VhfrhkpjbE', 'sandbox')
+TPDirect.card.setup({
+    fields: {
+        number: {
+            element: '.form-control.card-number',
+            placeholder: '**** **** **** ****'
+        },
+        expirationDate: {
+            element: document.getElementById('tappay-expiration-date'),
+            placeholder: 'MM / YY'
+        },
+        ccv: {
+            element: '#card-ccv',
+            placeholder: 'CVV'
+        }
+    },
+    styles: {
+        'input': {
+            'color': 'gray',
+            'font-size': '16px'
+        },
+        'input.ccv': {
+            'font-size': '16px'
+        },
+        ':focus': {
+            'color': 'black'
+        },
+        '.valid': {
+            'color': 'green'
+        },
+        '.invalid': {
+            'color': 'red'
+        },
+        '@media screen and (max-width: 400px)': {
+            'input': {
+                'color': 'orange'
+            }
+        }
+    }
+})
+
+const paySubmit = document.getElementById('pay-submit')
+TPDirect.card.onUpdate(function (update) {
+    if (update.canGetPrime) {
+        paySubmit.removeAttribute('disabled')
+    } else {
+        paySubmit.setAttribute('disabled', true)
+    }
+})
+
+paySubmit.addEventListener("click",onSubmit)
+function onSubmit(event) {
+    event.preventDefault();
+    const cardErr = document.getElementById('card-err-msg');
+    const tappayStatus = TPDirect.card.getTappayFieldsStatus();
+
+    if (tappayStatus.canGetPrime === false) {
+        cardErr.textContent = '無法正確送出資料';
+        return
+    }
+
+    TPDirect.card.getPrime((result) => {
+        if (result.status !== 0) {
+            cardErr.textContent ='取得prime error原因' + result.msg;
+            return
+        }
+                
+        cardErr.textContent = ''
+        const errMsg = document.getElementById('input-err-msg');
+        const prime = result.card.prime;
+        const bookingName = document.getElementById('booking-name').value;
+        const bookingEmail = document.getElementById('booking-email').value;
+        const bookingPhone = document.getElementById('booking-phone').value;
+        const emailRe = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/;
+        const phoneRe = /^([-_－—\s\(]?)([\(]?)((((0?)|((00)?))(((\s){0,2})|([-_－—\s]?)))|(([\)]?)[+]?))(886)?([\)]?)([-_－—\s]?)([\(]?)[0]?[1-9]{1}([-_－—\s\)]?)[1-9]{2}[-_－—]?[0-9]{3}[-_－—]?[0-9]{3}$/;
+        if (bookingName == "" || bookingEmail == "" || bookingPhone == ""){
+            errMsg.textContent = "姓名，信箱，手機不得為空";
+        } else if (bookingPhone.search(phoneRe)== -1){
+            errMsg.textContent = "手機格式有誤";
+        } else if (bookingEmail.search(emailRe)== -1){
+            errMsg.textContent = "信箱格式有誤"
+        } else {
+            fetch("/api/booking")
+            .then(function(res){
+                return res.json()
+            })
+            .then(function(resJson){
+                const orderAttraction = resJson.data.attraction;
+                const orderDate = resJson.data.date;
+                const orderPrice = resJson.data.price;
+                const orderTime = resJson.data.time;
+                const payOptions = {
+                    method:"POST",
+                    headers: {"Content-Type":"application/json"},
+                    body: JSON.stringify({
+                        prime:prime,
+                        order:{
+                            price:orderPrice,
+                            trip:{
+                                attraction:orderAttraction,
+                                date:orderDate,
+                                time:orderTime
+                            },
+                            contact:{
+                                name:bookingName,
+                                email:bookingEmail,
+                                phone:bookingPhone
+                            }
+                        }
+                    })
+                }
+                fetch('/api/orders',payOptions)
+                .then(function(res){
+                    return res.json()
+                })
+                .then(function(resJson){
+                    const backMsg = document.getElementById("backend-err-msg");
+                    if (resJson.data.payment.status == 0){
+                        location.replace("/thankyou?number="+parseInt(resJson.data.number));
+                    } else if (resJson.error == true){
+                        backMsg.textContent = resJson.message;
+                    } else if (resJson.data.payment.status == 1){
+                        backMsg.textContent = resJson.data.payment.message + "，請重新嘗試";
+                    }
+                })
+            })
+        }
+    })
+}
