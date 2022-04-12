@@ -573,7 +573,7 @@ main{
 .trashcan{
     flex-grow: 1;
     display: flex;
-    justify-content: right;
+    justify-content: flex-end;
 }
 
 .trashcan img{
@@ -849,8 +849,6 @@ main{
 
     .trashcan{
         margin-left: 0;
-        display: flex;
-        justify-content: right;
     }
 
     .trashcan img{
