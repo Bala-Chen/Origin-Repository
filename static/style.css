@@ -76,7 +76,7 @@ hr{
 #loginli{
     display: none;
 }
-#logoutli{
+#memberli{
     display: none;
 }
 #loginMessage{
@@ -313,7 +313,6 @@ hr{
 
 .footer-block h3{
     margin: 45px auto;
-    /* margin-bottom: 806px; */
 }
 
 .no-data{
@@ -687,6 +686,98 @@ main{
     margin: 20px auto;
 }
 
+/* member page */
+
+#member-block{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.member-container{
+    width: 1200px;
+    margin: 55px auto;
+    display: none;
+}
+
+.member-area{
+    margin-bottom: 20px;
+}
+
+.member-info{
+    display: flex;
+    justify-content: left;
+}
+
+.member-img{
+    width: 20%;
+    margin: 10px 10px 0 0;
+}
+
+.member-img img{
+    width: 100%;
+}
+
+.member-info-list{
+    width: 60%;
+    margin-top: 10px;
+}
+
+.member-info-list li{
+    list-style: none;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.logout-block{
+    width: 20%;
+    align-self: flex-end;
+}
+
+#logout{
+    border: 0;
+    border-radius: 5px;
+    background-color: #448899;
+    width: 100%;
+    height: 36px;
+    color: white;
+    font-size: 19px;
+    font-weight: 400;
+    margin-top: 14px;
+    cursor: pointer;
+}
+
+.member-order-title{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.member-order-title-li{
+    width: 25%;
+    margin: 5px 0;
+}
+
+.member-order{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: 1px #666666 solid;
+    margin: 5px 0 5px 0;
+    cursor: pointer;
+}
+
+.member-order:hover{
+    background-color: #E8E8E8;
+}
+
+.member-order-li{
+    margin: 8px 0;
+    width: 25%;
+}
+
 @media screen and (min-width: 601px) and (max-width:1200px){
 
     .main-container{
@@ -773,6 +864,11 @@ main{
 
     .right-position{
         margin-right: 0;
+    }
+
+    .member-container{
+        width: 90%;
+        margin: 55px auto;
     }
 }
 
@@ -892,5 +988,35 @@ main{
     .right-position{
         margin-top: 43px;
         margin-right: 0;
+    }
+
+    .member-container{
+        width: 90%;
+        margin: 55px auto;
+    }
+    .member-order-title{
+        flex-wrap: wrap;
+        border: 1px #337788 double;
+    }
+    .member-order-title-li{
+        width: 50%;
+    }
+    .member-order{
+        flex-wrap: wrap;
+    }
+    .member-order-li{
+        width: 50%;
+    }
+    .member-info{
+        flex-wrap: wrap;
+    }
+    .member-img{
+        width: 100%;
+    }
+    .member-info-list{
+        width: 100%;
+    }
+    .logout-block{
+        width: 100%;
     }
 }
