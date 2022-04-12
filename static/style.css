@@ -642,7 +642,7 @@ main{
 
 .right-position{
     display: flex;
-    justify-content: right;
+    justify-content: flex-end;
 }
 
 .right-block h3{
