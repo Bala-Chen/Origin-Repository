@@ -184,6 +184,7 @@ function bookingUser(name,email){
 }
 
 //attraction to booking
+const today = new Date();
 const bookingBtn = document.getElementById("booking-btn");
 function madeBooking(){
     let attractionID = lastNum;
@@ -191,6 +192,7 @@ function madeBooking(){
     const timeCheck = document.getElementsByName("time");
     const errorBooking = document.getElementById("booking-error");
     let dateInputValue = dateInput.value;
+    const chooseDate = new Date(dateInputValue);
     let timeCheckValue;
     for (let i = 0; i < timeCheck.length; i++){
         if (timeCheck[i].checked == true){
@@ -200,6 +202,9 @@ function madeBooking(){
     }
     if (dateInputValue == ""){
         errorBooking.textContent = "請點選日期";
+    }
+    else if(today > chooseDate){
+        errorBooking.textContent = "不可選擇已過或當天日期";
     }
     else {
         let cost;
