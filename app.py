@@ -20,6 +20,9 @@ def booking():
 @app.route("/thankyou")
 def thankyou():
 	return render_template("thankyou.html")
+@app.route("/member")
+def member():
+    return render_template("member.html")
 
 @app.errorhandler(404)
 def resource_not_found(e):
