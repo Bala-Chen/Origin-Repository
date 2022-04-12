@@ -643,7 +643,6 @@ main{
 .right-position{
     display: flex;
     justify-content: right;
-    margin-right: 102px;
 }
 
 .right-block h3{
