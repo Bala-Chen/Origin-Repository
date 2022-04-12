@@ -81,7 +81,7 @@ function thanksEnd(){
     const thanksEndBlock = document.createElement('div');
     const thanksH2 = document.createElement("h2");
     thanksEndBlock.className = "thank-end"
-    thanksH2.textContent ="感謝您的購買，建議將網址記錄下來之後方便確認！";
+    thanksH2.textContent ="感謝您的購買，之後可至會員中心確認訂單！";
     thanksEndBlock.appendChild(thanksH2);
     orderTripArea.appendChild(thanksEndBlock);
     const footerH3 = document.getElementById('footer-block-h3');
