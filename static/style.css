@@ -240,6 +240,7 @@ hr{
     height: 46px;
     padding: 8px 15px;
     background: #448899;
+    cursor: pointer;
 }
 
 .search-btn img{
