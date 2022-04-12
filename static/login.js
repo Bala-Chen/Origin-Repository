@@ -114,7 +114,7 @@ const loginButton = document.getElementById('login-submit')
 loginButton.addEventListener("click",clickLoginBtn)
 
 //頁面載入使用者狀態
-const logoutli = document.getElementById("logoutli")
+const memberli = document.getElementById('memberli')
 const loginli = document.getElementById("loginli")
 function getUser(){
     fetch("/api/user")
@@ -124,10 +124,10 @@ function getUser(){
     .then(function(resJson){
         if (resJson.data != null){
             loginli.style.display = "none";
-            logoutli.style.display = "inline-block";
+            memberli.style.display = "inline-block";
         } else {
             loginli.style.display = "inline-block";
-            logoutli.style.display = "none";
+            memberli.style.display = "none";
         }
         return resJson.data
     })
@@ -142,20 +142,13 @@ function getUser(){
 window.addEventListener("load",getUser)
 
 
-//登出
-function delSession(){
-    fetch("/api/user",{method: 'DELETE'})
-    .then(function(res){
-        return res.json()
-    })
-    .then(function(resJson){
-        if (Object.keys(resJson)[0] == "ok"){
-            location.reload();
-        }
-    })
+//enter member page
+function memberPage(){
+    location.replace('/member')
 }
-const logoutBtn = document.getElementById("logout")
-logoutBtn.addEventListener("click",delSession)
+const memberBtn = document.getElementById('member-btn')
+memberBtn.addEventListener('click',memberPage)
+
 
 //enter booking
 function enterBooking(){
