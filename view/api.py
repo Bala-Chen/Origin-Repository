@@ -5,6 +5,7 @@ from controller.attraction_api import attraction
 from controller.member_api import Member
 from controller.booking_api import Booking
 from controller.order_api import Order
+from controller.member_page_api import Member_page
 
 api = Blueprint('api',__name__)
 
@@ -43,3 +44,7 @@ def orders():
 @api.route('/api/order/<string:orderNumber>')
 def order(orderNumber):
     return json.dumps(Order.thanks(orderNumber))
+
+@api.route('/api/memberorder',methods=["POST"])
+def memberorder():
+    return json.dumps(Member_page.get_member_order())

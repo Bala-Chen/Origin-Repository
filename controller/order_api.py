@@ -1,10 +1,10 @@
 from flask import request,session
 from random import randint
+from modules.db import Pool
+from controller.booking_api import Booking
 import requests
 import json
 import re
-from modules.db import Pool
-from controller.booking_api import Booking
 
 p = Pool()
 

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/static/style.css" >
-    <title>台北一日遊</title>
+    <title>台北一日遊-會員頁面</title>
 </head>
 <body>
     <header>
@@ -23,6 +23,7 @@
                     </nav>
                 </div>
             </div>
+            <hr>
         </div>
     </header>
     <section class="login-register-block" id="login-register-block">
@@ -41,40 +42,52 @@
             <div class="blue-block"></div>
             <h2>註冊會員帳號</h2>
             <img src="/static/img/icon_close.png" id="close-img2">
-            <input type="text" name="name" id="register-name" placeholder="輸入姓名" minlength="1">
-            <input type="email" name="email" id="register-email" placeholder="輸入電子信箱" minlength="4">
-            <input type="password" name="password" id="register-password" placeholder="輸入密碼" minlength="4" maxlength="20">
+            <input type="text" name="name" id="register-name" placeholder="輸入姓名">
+            <input type="email" name="email" id="register-email" placeholder="輸入電子信箱">
+            <input type="password" name="password" id="register-password" placeholder="輸入密碼">
             <button class="submit" id="register-submit">註冊新帳戶</button>
             <p id="registerMessage"></p>
             <p>已經有帳戶了？<button id="check-login">點此登入</button></p>
         </div>
     </section>
-    <section>
-        <div class="section-area">
-            <div class="section-block">
-                <div class="section-text">
-                    <h2>輕鬆享受台北一日悠閒</h2>
-                    <h3>探索每個角落，體驗城市的深度旅遊行程</h3>
-                    <div class="search-attraction">
-                        <div class="search-area">
-                            <label for="attraction-name"></label>
-                            <input type="text" name="attraction-name" id="attraction-name" placeholder="輸入景點名稱查詢">
-                        </div>
-                        <button class="button-area" id="button-area"><img src="/static/img/icon_search.png"></button>
+    <main id="member-block">
+        <div class="member-container" id="member-area">
+            <div class="member-area" id="member-data">
+                <h2>會員資訊</h2>
+                <hr>
+                <div class="member-info">
+                    <div class="member-img">
+                        <img src="/static/img/member.jpg">
                     </div>
+                    <div class="member-info-list">
+                        <ul>
+                            <li>姓名：<span id="name-li"></span></li>
+                            <li>信箱：<span id="email-li"></span></li>
+                        </ul>
+                    </div>
+                    <div class="logout-block" id="logoutli">
+                        <button id="logout">登出系統</button>
+                    </div>
+                </div> 
+            </div>
+            <div class="member-area" id="order-list">
+                <h2>購買清單</h2>
+                <hr>
+                <div class="member-order-title" id="member-order-title">
+                    <div class="member-order-title-li">訂單編號</div>
+                    <div class="member-order-title-li">付款狀態</div>
+                    <div class="member-order-title-li">景點名稱</div>
+                    <div class="member-order-title-li">出遊日期</div>
                 </div>
             </div>
         </div>
-    </section>
-    <main id="main">
-        <div class="main-container" id="main-area"></div>
     </main>
     <footer>
         <div class="footer-block">
-            <h3>COPYRIGHT © 2021 台北一日遊</h3>
+            <h3 id="footer-block-h3">COPYRIGHT © 2021 台北一日遊</h3>
         </div>
     </footer>
-    <script src="/static/script.js"></script>
     <script src="/static/login.js"></script>
+    <script src="/static/member.js"></script>
 </body>
 </html>
