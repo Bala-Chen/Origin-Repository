@@ -39,7 +39,8 @@ function attractionDescript(data){
     let attDescript = document.createElement("p");
     let attAddress = document.createElement("p");
     let attTraffic = document.createElement("p");
-    attDescript.textContent = data.description;
+    let newDescription = (data.description).replace(/\s*/g,"");
+    attDescript.textContent = newDescription;
     attAddress.textContent = data.address;
     attTraffic.textContent = data.transport;
     descript.appendChild(attDescript);
