@@ -56,7 +56,7 @@ class Order:
                     "merchant_id": "guava422448_CTBC",
                     "order_number":str(random_num),
                     "details":"taipei trip attraction",
-                    "amount": 1,
+                    "amount": request_json["order"]["price"],
                     "cardholder": {
                         "phone_number": request_json["order"]["contact"]["phone"],
                         "name": request_json["order"]["contact"]["name"],
