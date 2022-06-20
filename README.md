@@ -11,6 +11,9 @@ Creditcard: 4242-4242-4242-4242 <br>
 Creditcard Valid Date: 01/23 <br>
 Creditcard CVV: 123 <br>
 
+## Architecture
+![Imgur](https://i.imgur.com/cW2MZ4m.png)
+
 ## Features
 
 ### Index
