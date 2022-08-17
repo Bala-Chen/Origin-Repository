@@ -3,7 +3,7 @@
 > Taipei Day Trip is a platform where you can search for famous attractions in Taipei, and book a guided tour.
 
 ## Demo
-Link：http://15.152.173.206:3000/ <br>
+Link：本網站已關閉<br>
 
 Test account：test123@abc.com <br>
 Test password：test123 <br>
